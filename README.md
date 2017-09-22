@@ -1,0 +1,2 @@
+# php_session_json_handler
+php_session_json_handler PHP extensions for session.serialize_handler
