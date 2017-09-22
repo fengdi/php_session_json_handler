@@ -157,25 +157,28 @@ PS_SERIALIZER_DECODE_FUNC(json){
 	params[0] = strjson;
 	params[1] = assoc;
 
+
+
 	if(strlen(val) > 0){
 
 		call_user_function_ex(EG(function_table), NULL, &funname, &retval, 2, params, 0, NULL);
 
-		//php_var_dump(&retval, 1);
+		// php_var_dump(&retval, 1);
 
 		if (Z_TYPE_P(&retval) == IS_ARRAY) {
 
-			ZEND_HASH_FOREACH_STR_KEY_VAL(HASH_OF(&retval), key_str, value) {
+				ZEND_HASH_FOREACH_STR_KEY_VAL(HASH_OF(&retval), key_str, value) {
 					if (key_str) {
 						php_set_session_var(key_str, value, NULL);
 						php_add_session_var(key_str);
 						ZVAL_UNDEF(value);
 					}
+					zval_ptr_dtor(value);
 				} ZEND_HASH_FOREACH_END();
 		}
+
 	}
 
-	zval_ptr_dtor(value);
 	zval_ptr_dtor(&funname);
 	zval_ptr_dtor(&retval);
 	zval_ptr_dtor(&params[0]);
