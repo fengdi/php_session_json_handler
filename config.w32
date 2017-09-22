@@ -1,0 +1,14 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("session_json_handler", "for session_json_handler support", "no");
+
+// Otherwise, use ARG_ENABLE
+
+ARG_ENABLE("session_json_handler", "enable session_json_handler support", "no"); 
+
+
+if (PHP_SESSION_JSON_HANDLER != "no") {
+	EXTENSION("session_json_handler", "session_json_handler.c", null, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+}

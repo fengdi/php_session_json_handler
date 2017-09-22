@@ -1,2 +1,9 @@
 # php_session_json_handler
-php_session_json_handler PHP extensions for session.serialize_handler
+
+A PHP EXTENSION FOR SESSION WITH JSON FORMAT SAERIALIZE 
+
+config php.ini 
+
+session.serialize_handler = json
+ 
+after extension so was installed
