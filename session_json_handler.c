@@ -107,7 +107,6 @@ PS_SERIALIZER_ENCODE_FUNC(json){
 
 	smart_str buf = {0};
 
-	char *retstr;
 	zval funname;
 	zval retval;
 	zval params[1];
@@ -124,6 +123,9 @@ PS_SERIALIZER_ENCODE_FUNC(json){
 	smart_str_sets(&buf, Z_STRVAL_P(&retval));
 	smart_str_0(&buf);
 
+	zval_ptr_dtor(&funname);
+	zval_ptr_dtor(&retval);
+	zval_ptr_dtor(&params[0]);
 	//ZSTR_VAL(buf.s);
 
 	return buf.s;
@@ -170,10 +172,16 @@ PS_SERIALIZER_DECODE_FUNC(json){
 						ZVAL_UNDEF(value);
 					}
 				} ZEND_HASH_FOREACH_END();
-				zval_ptr_dtor(&retval);
 		}
-
 	}
+
+	zval_ptr_dtor(value);
+	zval_ptr_dtor(&funname);
+	zval_ptr_dtor(&retval);
+	zval_ptr_dtor(&params[0]);
+	zval_ptr_dtor(&params[1]);
+	zval_ptr_dtor(&strjson);
+	zval_ptr_dtor(&assoc);
 
 	return SUCCESS;
 }
