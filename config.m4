@@ -13,9 +13,9 @@ dnl [  --with-session_json_handler             Include session_json_handler supp
 
 dnl Otherwise use enable:
 
-dnl PHP_ARG_ENABLE(session_json_handler, whether to enable session_json_handler support,
-dnl Make sure that the comment is aligned:
-dnl [  --enable-session_json_handler           Enable session_json_handler support])
+PHP_ARG_ENABLE(session_json_handler, whether to enable session_json_handler support,
+Make sure that the comment is aligned:
+[  --enable-session_json_handler           Enable session_json_handler support])
 
 if test "$PHP_SESSION_JSON_HANDLER" != "no"; then
   dnl Write more examples of tests here...

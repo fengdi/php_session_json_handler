@@ -152,7 +152,7 @@ PS_SERIALIZER_DECODE_FUNC(json){
 
 	ZVAL_STRING(&funname, "json_decode");
 	ZVAL_STRING(&strjson, val);
-	ZVAL_BOOL(&assoc, TRUE);
+	ZVAL_BOOL(&assoc, 1);
 
 	params[0] = strjson;
 	params[1] = assoc;
